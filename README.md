@@ -10,12 +10,22 @@ So in short, just placing:
 `{{github:username,bitbucket:username,sortby:watchers,sortdir:desc}}`
 
 in a post would pull your projects from both github and bitbucket, merge them into one list,
-sort them in descending order by watchers, and place a list in your post, and cache it. More below!
+sort them in descending order by watchers, cache it, and place the list in your post. More below!
 
 ## Maintainer
 
 This project is maintained by [Kenny Katzgrau](http://codefury.net) ([@_kennyk_](http://twitter.com/_kennyk_)). It
 was supposed to be a quick project, but I got really into it.
+
+## Installation
+
+Download a [zip](https://github.com/katzgrau/wordpress-github/zipball/master) extract
+it into `/wp-content/plugins/`. Rename the extracter folder to wordpress-github.
+
+Should you should now have a `/wp-content/plugins/wordpress-github` directory.
+
+Now log into the WP admin panel and activate the plugin. Go to the 'GitHub/BitBucket'
+settings page and do your thing (if you'd like, the plugin doesn't _need_ any configuration).
 
 ## Examples
 
