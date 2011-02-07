@@ -45,6 +45,11 @@ For 'Sources', put in a project string like: `github:your_username`. I use somet
 You can edit _how_ projects are listed on the settings page. Look for the
 'Github/BitBucket' settings link in the Wordpress admin panel.
 
+Customization options include formatting and sorting. For example, if you want projects
+with the most watchers listed first, do:
+
+{{github:username,sortby:watchers,sortdir:desc}}
+
 ## Other details
 
 The plugin caches your projects for 1 hour. If you'd like to configure this,

@@ -82,6 +82,13 @@ class WPGH_Project
             $username = strtolower(trim($username));
             $method = "fetch_$location";
 
+            #It might actually be an option
+            if($location == 'sortby')
+                $sort_type = $username;
+
+            if($location == 'sortdir')
+                $sort_asc = ($username == 'asc');
+
             # Check that a call exists for this source type
             if(!is_callable(array(__CLASS__, $method)))
                 continue;
@@ -105,9 +112,9 @@ class WPGH_Project
 
         # Sort the list? Everyone wants watchers first!
         $sort_type = strtolower($sort_type);
-        if($sort_type && is_callable(array(__CLASS__, "sort$sort_type")))
+        if($sort_type && is_callable(array(__CLASS__, "sortby$sort_type")))
         {
-            $sorter = "sort$sort_type";
+            $sorter = "sortby$sort_type";
             $projects = self::$sorter($projects, $sort_asc);
         }
 
@@ -189,7 +196,7 @@ class WPGH_Project
             usort($projects, array(__CLASS__, 'compareWatchersAsc'));
         else
             usort($projects, array(__CLASS__, 'compareWatchersDesc'));
-        
+
         return $projects;
     }
 
@@ -214,5 +221,44 @@ class WPGH_Project
     public static function compareWatchersDesc($p1, $p2)
     {
         return $p1->watchers > $p2->watchers ? -1 : 1;
+    }
+
+    /**
+     * Sort a list of projects by watchers using PHP's usort
+     * @param array[WPGH_Project] $projects
+     * @param bool $is_asc
+     * @return array[WPGH_Project]
+     */
+    public static function sortbyname($projects, $is_asc = TRUE)
+    {
+        if($is_asc)
+            usort($projects, array(__CLASS__, 'compareNamesAsc'));
+        else
+            usort($projects, array(__CLASS__, 'compareNamesDesc'));
+        
+        return $projects;
+    }
+
+    /**
+     * Compare the names for acending order
+     * @param WPGH_Project $p1
+     * @param WPGH_Project $p2
+     * @return array
+     */
+    public static function compareNamesAsc($p1, $p2)
+    {
+        return strtolower($p1->name) < strtolower($p2->name) ? -1 : 1;
+    }
+
+    /**
+     *
+     * Compare the names for descending order
+     * @param WPGH_Project $p1
+     * @param WPGH_Project $p2
+     * @return array
+     */
+    public static function compareNamesDesc($p1, $p2)
+    {
+        return strtolower($p1->name) > strtolower($p2->name) ? -1 : 1;
     }
 }
