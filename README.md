@@ -5,6 +5,13 @@ github or bitbucket (or both). You can have them inserted in a standard post
 or page, or have them inserted in your sidebar. It's in use at
 [codefury.net](http://codefury.net/projects).
 
+So in short, just placing:
+
+`{{github:username,bitbucket:username,sortby:watchers,sortdir:desc}}`
+
+in a post would pull your projects from both github and bitbucket, merge them into one list,
+sort them in descending order by watchers, and place a list in your post, and cache it. More below!
+
 ## Maintainer
 
 This project is maintained by [Kenny Katzgrau](http://codefury.net) ([@_kennyk_](http://twitter.com/_kennyk_)). It
@@ -40,7 +47,7 @@ For 'Sources', put in a project string like: `github:your_username`. I use somet
 
 `github:katzgrau,bitbucket:katzgrau`
 
-## Customization
+## Customization and Sorting
 
 You can edit _how_ projects are listed on the settings page. Look for the
 'Github/BitBucket' settings link in the Wordpress admin panel.
@@ -48,7 +55,11 @@ You can edit _how_ projects are listed on the settings page. Look for the
 Customization options include formatting and sorting. For example, if you want projects
 with the most watchers listed first, do:
 
-{{github:username,sortby:watchers,sortdir:desc}}
+`{{github:username,sortby:watchers,sortdir:desc}`
+
+You can also sort alphabetically:
+
+`{{github:username,sortby:name,sortdir:asc}}`
 
 ## Other details
 
@@ -56,7 +67,7 @@ The plugin caches your projects for 1 hour. If you'd like to configure this,
  edit `WPGH_Core::$_cacheExpiration` in `wordpress-github.php`. This might be
  configurable via the admin interface later.
 
-Caching is done via another project of mine, WP-Easy-Cache.
+Caching is done via another project of mine, [WP-Easy-Cache](https://github.com/katzgrau/WP-Easy-Cache).
 
 ## License (MIT)
 
