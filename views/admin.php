@@ -81,8 +81,8 @@
 </p>
 
 <pre>
-    {{github:username,bitbucket:katzgrau,sort:watchers,sortdir:desc}} # Most watchers first
-    {{github:username,bitbucket:katzgrau,sort:name,sortdir:asc}}      # Alphabetical
+    {{github:username,bitbucket:katzgrau,sortby:watchers,sortdir:desc}} # Most watchers first
+    {{github:username,bitbucket:katzgrau,sortby:name,sortdir:asc}}      # Alphabetical
 </pre>
 
 <p>
