@@ -58,6 +58,8 @@ class WPGH_Core
             $template = str_replace('{{PROJECT_NAME}}', $project->name, $template);
             $template = str_replace('{{PROJECT_WATCHER_COUNT}}', $project->watchers, $template);
             $template = str_replace('{{PROJECT_DESCRIPTION}}', $project->description, $template);
+            $template = str_replace('{{PROJECT_SOURCE}}', $project->source, $template);
+            $template = str_replace('{{PROJECT_WATCHER_NOUN}}', $project->watcher_noun, $template);
 
             $output .= $template . "\n";
         }
@@ -75,12 +77,11 @@ $template = <<<TEMP
 <li>
     <h4>
         <a href="{{PROJECT_URL}}">
-            {{PROJECT_NAME}} &mdash; {{PROJECT_WATCHER_COUNT}}
+            {{PROJECT_NAME}}
         </a>
     </h4>
-    <p>{{PROJECT_DESCRIPTION}}</p>
+    <p>{{PROJECT_DESCRIPTION}} <small>({{PROJECT_WATCHER_COUNT}} {{PROJECT_WATCHER_NOUN}})</small></p>
 </li>
-
 TEMP;
 
 

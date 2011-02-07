@@ -9,13 +9,13 @@
     }
 
     #wpgh-settings input {
-        width: 450px;
+        width: 500px;
         border: 1px solid #ccc;
     }
 
-    #wpgh-settings textarea {
-        width: 450px;
-        height: 250px;
+    .wpgh-textarea {
+        width: 500px;
+        height: 200px;
         border: 1px solid #ccc;
     }
 
@@ -29,7 +29,7 @@
 
     #wpgh_info {
         padding: 10px;
-        background: #f7f7f7;
+        background-color: #fff;
         border: 2px dashed #69A74E;
         margin-right: 10px;
         float:right;
@@ -98,10 +98,10 @@
         </tr>
         <tr>
             <td>
-                List Template
+                List Item Template
             </td>
             <td>
-                <textarea name="wpgh_template" <?php echo $wpgh_template; ?></textarea>
+                <textarea wrap="off" class="wpgh-textarea" name="wpgh_template" <?php echo $wpgh_template; ?></textarea>
             </td>
             <td>
                 This template will be output for every project that comes back 
@@ -111,6 +111,8 @@
                     <li>{{PROJECT_URL}}</li>
                     <li>{{PROJECT_DESCRIPTION}}</li>
                     <li>{{PROJECT_WATCHER_COUNT}}</li>
+                    <li>{{PROJECT_SOURCE}} <small>like 'GitHub'</small></li>
+                    <li>{{PROJECT_WATCHER_NOUN}} <small>'watchers' or 'watcher' depending on count</small></li>
                 </ul>
             </td>
         </tr>

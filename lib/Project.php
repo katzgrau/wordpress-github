@@ -37,6 +37,19 @@ class WPGH_Project
     public $watchers;
 
     /**
+     * The source hosting the project.. Like GitHub or BitBucket
+     * @var string
+     */
+    public $source;
+
+    /**
+     * If the project has one follower, contains 'watcher'. If 0 or greater
+     *  than 1, 'watchers'
+     * @var string
+     */
+    public $watcher_noun;
+
+    /**
      * Fetch information about all of the projects
      * @param string $info A string like github:katzgrau[,bitbucket:katzgrau]+
      * @param string $sort_type Valid sorts include ByWatchers
@@ -124,6 +137,8 @@ class WPGH_Project
             $proj->name = $repo->name;
             $proj->description = $repo->description;
             $proj->watchers = $repo->watchers;
+            $proj->source = "GitHub";
+            $proj->watcher_noun = ($repo->watchers == 1 ? 'watcher' : 'watchers');
 
             $projects[] = $proj;
         }
@@ -153,6 +168,8 @@ class WPGH_Project
             $proj->name = $repo->name;
             $proj->description = $repo->description;
             $proj->watchers = $repo->followers_count;
+            $proj->source = "BitBucket";
+            $proj->watcher_noun = ($repo->followers_count == 1 ? 'watcher' : 'watchers');
 
             $projects[] = $proj;
         }
@@ -166,7 +183,7 @@ class WPGH_Project
      * @param bool $is_asc
      * @return array[WPGH_Project]
      */
-    public function sortbywatchers($projects, $is_asc = TRUE)
+    public static function sortbywatchers($projects, $is_asc = TRUE)
     {
         if($is_asc)
             usort($projects, array(__CLASS__, 'compareWatchersAsc'));
@@ -182,7 +199,7 @@ class WPGH_Project
      * @param WPGH_Project $p2
      * @return array
      */
-    public function compareWatchersAsc($p1, $p2)
+    public static function compareWatchersAsc($p1, $p2)
     {
         return $p1->watchers < $p2->watchers ? -1 : 1;
     }
@@ -194,7 +211,7 @@ class WPGH_Project
      * @param WPGH_Project $p2
      * @return array
      */
-    public function compareWatchersDesc($p1, $p2)
+    public static function compareWatchersDesc($p1, $p2)
     {
         return $p1->watchers > $p2->watchers ? -1 : 1;
     }
