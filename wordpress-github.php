@@ -1,9 +1,9 @@
 <?php
 /*
-Plugin Name: Github & BitBucket Project Lister
+Plugin Name: GitHub & BitBucket Project Lister
 Plugin URI: https://github.com/katzgrau/wordpress-github
 Description: List your github and bitbucket projects on your Wordpress blog really, really easily. Why? Because you're a baller.
-Version: 1.0
+Version: 1.0.0
 Author: Kenny Katzgrau
 Author URI: http://codefury.net
 */
@@ -37,7 +37,7 @@ class WPGH_Core
      */
     static function insertProjects($content)
     {
-        return preg_replace_callback('/\{\{((?:[\w\d\-_]+\:[\w\d\-_]+\,?)+)\}\}/', array(__CLASS__, 'replaceCallback'), $content);
+        return preg_replace_callback('/\{\{((?:[\w\d\-_]+\:[\w\d\-_]+(?:[\,\s]+)?)+)\}\}/', array(__CLASS__, 'replaceCallback'), $content);
     }
 
     /**
@@ -110,7 +110,7 @@ TEMP;
      */
     static function registerAdmin()
     {
-        add_options_page('Github/BitBucket', 'Github/BitBucket', 'edit_pages', 'wordpress-github.php', array(__CLASS__, 'adminMenuCallback'));
+        add_options_page('Github/BitBucket', 'GitHub/BitBucket', 'edit_pages', 'wordpress-github.php', array(__CLASS__, 'adminMenuCallback'));
     }
 
     /**

@@ -47,8 +47,9 @@ You can edit _how_ projects are listed on the settings page. Look for the
 
 ## Other details
 
-The plugin caches your projects for 1 hour. If you'd like to configure this, hack
- the plugin :)
+The plugin caches your projects for 1 hour. If you'd like to configure this,
+ edit `WPGH_Core::$_cacheExpiration` in `wordpress-github.php`. This might be
+ configurable via the admin interface later.
 
 Caching is done via another project of mine, WP-Easy-Cache.
 
