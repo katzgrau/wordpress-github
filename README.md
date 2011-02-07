@@ -2,11 +2,12 @@
 
 This is a Wordpress plugin that will list your open source projects from
 github or bitbucket (or both). You can have them inserted in a standard post
-or page, or have them inserted in your sidebar.
+or page, or have them inserted in your sidebar. It's in use at
+[codefury.net](http://codefury.net/projects).
 
 ## Maintainer
 
-This project is maintained by [Kenny Katzgrau](http://codefury.net) [@_kennyk_](http://twitter.com/_kennyk_). It
+This project is maintained by [Kenny Katzgrau](http://codefury.net) ([@_kennyk_](http://twitter.com/_kennyk_)). It
 was supposed to be a quick project, but I got really into it.
 
 ## Examples
