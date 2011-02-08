@@ -1,0 +1,37 @@
+#/bin/sh
+
+# This is a simple deploy script for wordpress-github. It basically
+#  copies the contents out of this git directory and places them in
+#  turnk. Additionally, it'll create a new svn tag.
+#
+# It's assumed you have svn-wordpress-github alongside the git repo
+
+
+if [ -z "$1" ]
+then
+  echo "Usage: ./deploy TAG_NAME"
+  echo "A tag name is required."
+  exit 1
+fi
+
+# Get the current path
+GIT=`pwd`
+
+# Go to svn
+cd ../svn-wordpress-github/trunk
+SVN=`pwd`
+
+# Update the code
+rsync -avz --exclude=".*/" $GIT/* $SVN
+
+# Do some handywork
+rm deploy
+mv README.md readme.txt
+
+cd ../
+
+# Create the tag
+svn cp trunk/ tags/$1
+
+cd $GIT
+echo "Complete. Tag $1 created"
