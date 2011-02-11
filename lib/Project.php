@@ -185,6 +185,37 @@ class WPGH_Project
     }
 
     /**
+     * Fetch the projects from Sourceforge
+     * @param string $username
+     * @return array An array of projects
+     */
+    public static function fetch_sourceforge($username)
+    {
+        $projects = array();
+
+        $url  = "http://sourceforge.net/api/user/username/$username/json";
+        $json = WPGH_Net::get($url);
+
+        if(!is_object($json = json_decode($json)))
+            return FALSE;
+
+        foreach($json->User->projects as $repo)
+        {
+            $proj = new WPGH_Project;
+            $proj->url = "#";
+            $proj->name = $repo->unix_name;
+            $proj->description = $repo->name;
+            $proj->watchers = 1;
+            $proj->source = "SourceForge";
+            $proj->watcher_noun = ($proj->watchers == 1 ? 'watcher' : 'watchers');
+
+            $projects[] = $proj;
+        }
+
+        return $projects;
+    }
+
+    /**
      * Sort a list of projects by watchers using PHP's usort
      * @param array[WPGH_Project] $projects
      * @param bool $is_asc
