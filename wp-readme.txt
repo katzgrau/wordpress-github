@@ -2,8 +2,8 @@
 Contributors: Kenny Katzgrau
 Tags: github,bitbucket,projects,project,list
 Requires at least: 3.0
-Tested up to: 3.0.5
-Stable tag: 1.0.3
+Tested up to: 3.1
+Stable tag: 1.0.4
 
 This is a Wordpress plugin that will list your open source projects from
 github or bitbucket in-page or via sidebar.
@@ -26,7 +26,9 @@ More detail at: [the github repository](https://github.com/katzgrau/wordpress-gi
 The plugin also comes packaged with a widget in case you'd just like to
 list your projects in the sidebar. Full details are on the settings page.
 
-Follow [@_kennyk_](http://twitter.com/_kennyk_) for updates, or visit
+New! Limited suuport for SourceForge: Just use sourceforge:username.
+
+Follow [@\_kennyk\_](http://twitter.com/_kennyk_) for updates, or visit
 [codefury.net](http://codefury.net)
 
 == Installation ==

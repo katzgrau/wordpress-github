@@ -205,7 +205,7 @@ class WPGH_Project
             $proj->url = "#";
             $proj->name = $repo->unix_name;
             $proj->description = $repo->name;
-            $proj->watchers = 1;
+            $proj->watchers = 1; # The guy who wrote it.. consistent with github
             $proj->source = "SourceForge";
             $proj->watcher_noun = ($proj->watchers == 1 ? 'watcher' : 'watchers');
 
