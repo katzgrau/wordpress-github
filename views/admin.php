@@ -96,9 +96,9 @@
 <form method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
     <table id="wpgh-settings">
         <tr>
-            <td>
+            <th scope="row">
                 Pre-List Markup (HTML)
-            </td>
+            </th>
             <td>
                 <input name="wpgh_opener" type="text" value="<?php echo $wpgh_opener; ?>" />
             </td>
@@ -107,9 +107,9 @@
             </td>
         </tr>
         <tr>
-            <td>
+            <th scope="row">
                 List Item Template
-            </td>
+            </th>
             <td>
                 <textarea wrap="off" class="wpgh-textarea" name="wpgh_template" <?php echo $wpgh_template; ?></textarea>
             </td>
@@ -127,9 +127,9 @@
             </td>
         </tr>
         <tr>
-            <td>
+            <th scope="row">
                 Post-List Markup (HTML)
-            </td>
+            </th>
             <td>
                 <input name="wpgh_closer" type="text" value="<?php echo $wpgh_closer; ?>" />
             </td>
@@ -138,9 +138,9 @@
             </td>
         </tr>
         <tr>
-            <td>
+            <th scope="row">
                 Save
-            </td>
+            </th>
             <td>
                 <input name="wpgh_submit" type="submit" value="Save!" />
             </td>
