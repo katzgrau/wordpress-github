@@ -111,7 +111,7 @@
                 List Item Template
             </th>
             <td>
-                <textarea wrap="off" class="wpgh-textarea" name="wpgh_template" <?php echo $wpgh_template; ?></textarea>
+                <textarea wrap="off" class="wpgh-textarea" name="wpgh_template"><?php echo $wpgh_template; ?></textarea>
             </td>
             <td>
                 This template will be output for every project that comes back 
