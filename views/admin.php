@@ -128,7 +128,7 @@
         </tr>
         <tr>
             <td>
-                Pre-List Markup (HTML)
+                Post-List Markup (HTML)
             </td>
             <td>
                 <input name="wpgh_closer" type="text" value="<?php echo $wpgh_closer; ?>" />
