@@ -14,7 +14,7 @@ sort them in descending order by watchers, cache it, and place the list in your 
 
 ## Maintainer
 
-This project is maintained by [Kenny Katzgrau](http://codefury.net) ([@_kennyk_](http://twitter.com/_kennyk_)). It
+This project is maintained by [Kenny Katzgrau](http://codefury.net) ([@\_kennyk\_](http://twitter.com/_kennyk_)). It
 was supposed to be a quick project, but I got really into it.
 
 ## Installation
@@ -78,6 +78,13 @@ The plugin caches your projects for 1 hour. If you'd like to configure this,
  configurable via the admin interface later.
 
 Caching is done via another project of mine, [WP-Easy-Cache](https://github.com/katzgrau/WP-Easy-Cache).
+
+## Special Thanks
+
+Special thanks to contributors, including:
+
+ * [mhutchin](http://github.com/mhutchin)
+ * [benallfree](http://github.com/benallfree)
 
 ## License (MIT)
 
