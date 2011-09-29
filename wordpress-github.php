@@ -166,7 +166,7 @@ class WPGH_Widget extends WP_Widget
      }
 
      /**
-      * Display the widget ont he sidebar
+      * Display the widget on the sidebar
       * @param array $args
       * @param array $instance
       */
