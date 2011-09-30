@@ -175,13 +175,16 @@ class WPGH_Widget extends WP_Widget
          extract($args);
          $title       = apply_filters('widget_title', $instance['w_title']);
          $info_string = $instance['w_info_string'];
-
+         $w_opener    = $instance['w_opener'];
+         $w_closer    = $instance['w_closer'];
 
          echo $before_widget;
 
          if($title);
             echo $before_title . $title. $after_title;
 
+         echo $w_opener;
+         
          $projects = WPGH_Project::fetch($info_string);
 
          if(count($projects) > 0)
@@ -199,6 +202,8 @@ class WPGH_Widget extends WP_Widget
              echo "</ul>";
          }
 
+         echo $w_closer;
+
          echo $after_widget;
      }
 
@@ -214,6 +219,8 @@ class WPGH_Widget extends WP_Widget
         
         $instance['w_title']       = $new_instance['w_title'];
         $instance['w_info_string'] = $new_instance['w_info_string'];
+        $instance['w_opener']      = $new_instance['w_opener'];
+        $instance['w_closer']      = $new_instance['w_closer'];
 
         return $instance;
      }
@@ -225,19 +232,26 @@ class WPGH_Widget extends WP_Widget
      function form($instance) 
      {
 
-        $defaults = array('w_title' => 'GitHub Projects', 'w_info_string' => '');
-		$instance = wp_parse_args((array) $instance, $defaults);
+        $defaults = array('w_title' => 'GitHub Projects', 'w_info_string' => '', 'w_opener' => '', 'w_closer' => '');
+		    $instance = wp_parse_args((array) $instance, $defaults);
        ?>
         <div class="widget-content">
        <p>
             <label for="<?php echo $this->get_field_id('w_title'); ?>">Title:</label>
             <input class="widefat" id="<?php echo $this->get_field_id('w_title'); ?>" name="<?php echo $this->get_field_name('w_title'); ?>" value="<?php  echo $instance['w_title']; ?>" />
-
        </p>
        <p>
             <label for="<?php echo $this->get_field_id('w_info_string'); ?>">Sources:</label>
             <input class="widefat" id="<?php echo $this->get_field_id( 'w_info_string' ); ?>" name="<?php echo $this->get_field_name('w_info_string'); ?>" value="<?php echo $instance['w_info_string']; ?>" />
             <small>eg, github:katzgrau</small>
+       </p>
+       <p>
+            <label for="<?php echo $this->get_field_id('w_opener'); ?>">Pre-List Markup (HTML):</label>
+            <textarea id="<?php echo $this->get_field_id( 'w_opener' ); ?>" name="<?php echo $this->get_field_name('w_opener'); ?>"><?php echo $instance['w_opener']; ?></textarea>
+       </p>
+       <p>
+            <label for="<?php echo $this->get_field_id('w_closer'); ?>">Post-List Markup (HTML):</label>
+            <textarea id="<?php echo $this->get_field_id( 'w_closer' ); ?>" name="<?php echo $this->get_field_name('w_closer'); ?>"><?php echo $instance['w_closer']; ?></textarea>
        </p>
         </div>
        <?php
