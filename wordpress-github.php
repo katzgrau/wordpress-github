@@ -247,11 +247,11 @@ class WPGH_Widget extends WP_Widget
        </p>
        <p>
             <label for="<?php echo $this->get_field_id('w_opener'); ?>">Pre-List Markup (HTML):</label>
-            <textarea id="<?php echo $this->get_field_id( 'w_opener' ); ?>" name="<?php echo $this->get_field_name('w_opener'); ?>"><?php echo $instance['w_opener']; ?></textarea>
+            <textarea class="widefat" id="<?php echo $this->get_field_id( 'w_opener' ); ?>" name="<?php echo $this->get_field_name('w_opener'); ?>"><?php echo $instance['w_opener']; ?></textarea>
        </p>
        <p>
             <label for="<?php echo $this->get_field_id('w_closer'); ?>">Post-List Markup (HTML):</label>
-            <textarea id="<?php echo $this->get_field_id( 'w_closer' ); ?>" name="<?php echo $this->get_field_name('w_closer'); ?>"><?php echo $instance['w_closer']; ?></textarea>
+            <textarea class="widefat" id="<?php echo $this->get_field_id( 'w_closer' ); ?>" name="<?php echo $this->get_field_name('w_closer'); ?>"><?php echo $instance['w_closer']; ?></textarea>
        </p>
         </div>
        <?php
