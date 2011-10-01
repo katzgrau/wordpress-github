@@ -3,7 +3,7 @@
 Plugin Name: GitHub & BitBucket Project Lister
 Plugin URI: https://github.com/katzgrau/wordpress-github
 Description: List your github and bitbucket projects on your Wordpress blog really, really easily. Why? Because you're a baller.
-Version: 1.0.5
+Version: 1.0.6
 Author: Kenny Katzgrau
 Author URI: http://codefury.net
 */
