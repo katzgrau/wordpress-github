@@ -77,12 +77,13 @@
 
 <p>
     Projects are sorted how they naturally come back from the source. You can force a sort by
-    the number of project watchers, or alphabetically. Examples:
+    the number of project watchers, alphabetically, or by the last update time. Examples:
 </p>
 
 <pre>
     {{github:username,bitbucket:katzgrau,sortby:watchers,sortdir:desc}} # Most watchers first
     {{github:username,bitbucket:katzgrau,sortby:name,sortdir:asc}}      # Alphabetical
+    {{github:username,bitbucket:katzgrau,sortby:updated,sortdir:desc}}  # Last push/update
 </pre>
 
 <p>
