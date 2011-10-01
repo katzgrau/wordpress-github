@@ -71,6 +71,10 @@ You can also sort alphabetically:
 
 `{{github:username,sortby:name,sortdir:asc}}`
 
+Lastly, you can sort by the last update or push. **Note:** This is currently supported by github's API only.
+
+`{{github:username,bitbucket:username,sortby:updated,sortdir:desc}}`
+
 ## Other details
 
 The plugin caches your projects for 1 hour. If you'd like to configure this,
@@ -85,6 +89,7 @@ Special thanks to contributors, including:
 
  * [mhutchin](http://github.com/mhutchin)
  * [benallfree](http://github.com/benallfree)
+ * [jmccrohan](http://github.com/jmccrohan)
 
 ## License (MIT)
 
