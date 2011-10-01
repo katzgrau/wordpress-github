@@ -50,6 +50,13 @@ class WPGH_Project
     public $watcher_noun;
 
     /**
+     * Date of last repo updated
+     * @var int
+     */
+     public $updated;
+
+
+    /**
      * Fetch information about all of the projects
      * @param string $info A string like github:katzgrau[,bitbucket:katzgrau]+
      * @param string $sort_type Valid sorts include ByWatchers
@@ -146,6 +153,7 @@ class WPGH_Project
             $proj->watchers = $repo->watchers;
             $proj->source = "GitHub";
             $proj->watcher_noun = ($repo->watchers == 1 ? 'watcher' : 'watchers');
+            $proj->updated = strtotime($repo->pushed_at);
 
             $projects[] = $proj;
         }
@@ -177,6 +185,7 @@ class WPGH_Project
             $proj->watchers = $repo->followers_count;
             $proj->source = "BitBucket";
             $proj->watcher_noun = ($repo->followers_count == 1 ? 'watcher' : 'watchers');
+            $proj->updated = 0;
 
             $projects[] = $proj;
         }
@@ -208,6 +217,7 @@ class WPGH_Project
             $proj->watchers = 1; # The guy who wrote it.. consistent with github
             $proj->source = "SourceForge";
             $proj->watcher_noun = ($proj->watchers == 1 ? 'watcher' : 'watchers');
+            $proj->updated = 0;
 
             $projects[] = $proj;
         }
@@ -232,7 +242,7 @@ class WPGH_Project
     }
 
     /**
-     * Compare the watchers for aending order
+     * Compare the watchers for ascending order
      * @param WPGH_Project $p1
      * @param WPGH_Project $p2
      * @return array
@@ -244,7 +254,7 @@ class WPGH_Project
 
     /**
      *
-     * Compare the watchers for aending order
+     * Compare the watchers for descending order
      * @param WPGH_Project $p1
      * @param WPGH_Project $p2
      * @return array
@@ -255,7 +265,7 @@ class WPGH_Project
     }
 
     /**
-     * Sort a list of projects by watchers using PHP's usort
+     * Sort a list of projects by name using PHP's usort
      * @param array[WPGH_Project] $projects
      * @param bool $is_asc
      * @return array[WPGH_Project]
@@ -271,7 +281,7 @@ class WPGH_Project
     }
 
     /**
-     * Compare the names for acending order
+     * Compare the names for ascending order
      * @param WPGH_Project $p1
      * @param WPGH_Project $p2
      * @return array
@@ -292,4 +302,44 @@ class WPGH_Project
     {
         return strtolower($p1->name) > strtolower($p2->name) ? -1 : 1;
     }
+
+    /**
+     * Sort a list of projects by time last updated using PHP's usort
+     * @param array[WPGH_Project] $projects
+     * @param bool $is_asc
+     * @return array[WPGH_Project]
+     */
+    public static function sortbyupdated($projects, $is_asc = TRUE)
+    {
+        if($is_asc)
+            usort($projects, array(__CLASS__, 'compareUpdatedAsc'));
+        else
+            usort($projects, array(__CLASS__, 'compareUpdatedDesc'));
+        
+        return $projects;
+    }
+
+    /**
+     * Compare the time last updated for ascending order
+     * @param WPGH_Project $p1
+     * @param WPGH_Project $p2
+     * @return array
+     */
+    public static function compareUpdatedAsc($p1, $p2)
+    {
+        return $p1->updated < $p2->updated ? -1 : 1;
+    }
+
+    /**
+     *
+     * Compare the time last updated for descending order
+     * @param WPGH_Project $p1
+     * @param WPGH_Project $p2
+     * @return array
+     */
+    public static function compareUpdatedDesc($p1, $p2)
+    {
+        return $p1->updated > $p2->updated ? -1 : 1;
+    }
+
 }
