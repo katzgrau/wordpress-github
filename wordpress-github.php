@@ -245,13 +245,16 @@ class WPGH_Widget extends WP_Widget
             <input class="widefat" id="<?php echo $this->get_field_id( 'w_info_string' ); ?>" name="<?php echo $this->get_field_name('w_info_string'); ?>" value="<?php echo $instance['w_info_string']; ?>" />
             <small>eg, github:katzgrau</small>
        </p>
+       <div style="border-bottom: 1px dotted #ccc; margin-bottom: 8px; margin-left: 10px; margin-right: 10px;"></div>
        <p>
             <label for="<?php echo $this->get_field_id('w_opener'); ?>">Pre-List Markup (HTML):</label>
             <textarea class="widefat" id="<?php echo $this->get_field_id( 'w_opener' ); ?>" name="<?php echo $this->get_field_name('w_opener'); ?>"><?php echo $instance['w_opener']; ?></textarea>
+            <small>Optional</small>
        </p>
        <p>
             <label for="<?php echo $this->get_field_id('w_closer'); ?>">Post-List Markup (HTML):</label>
             <textarea class="widefat" id="<?php echo $this->get_field_id( 'w_closer' ); ?>" name="<?php echo $this->get_field_name('w_closer'); ?>"><?php echo $instance['w_closer']; ?></textarea>
+            <small>Optional</small>
        </p>
         </div>
        <?php
