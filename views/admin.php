@@ -94,14 +94,14 @@
 
 <h3>In-page Project Listing Format</h3>
 
-<form method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
+<form method="post" action="<?php htmlentities($_SERVER['PHP_SELF']); ?>">
     <table id="wpgh-settings">
         <tr>
             <th scope="row">
                 Pre-List Markup (HTML)
             </th>
             <td>
-                <input name="wpgh_opener" type="text" value="<?php echo $wpgh_opener; ?>" />
+                <input name="wpgh_opener" type="text" value="<?php echo htmlentities($wpgh_opener); ?>" />
             </td>
             <td>
                 This will be inserted before your projects are listed.
@@ -112,7 +112,7 @@
                 List Item Template
             </th>
             <td>
-                <textarea wrap="off" class="wpgh-textarea" name="wpgh_template"><?php echo $wpgh_template; ?></textarea>
+                <textarea wrap="off" class="wpgh-textarea" name="wpgh_template"><?php echo htmlentities($wpgh_template); ?></textarea>
             </td>
             <td>
                 This template will be output for every project that comes back 
@@ -132,7 +132,7 @@
                 Post-List Markup (HTML)
             </th>
             <td>
-                <input name="wpgh_closer" type="text" value="<?php echo $wpgh_closer; ?>" />
+                <input name="wpgh_closer" type="text" value="<?php echo htmlentities($wpgh_closer); ?>" />
             </td>
             <td>
                 This will be inserted after your projects are listed.
