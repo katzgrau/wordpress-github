@@ -1,9 +1,9 @@
 <?php
 /*
-Plugin Name: GitHub & BitBucket Project Lister
-Plugin URI: https://github.com/katzgrau/wordpress-github
-Description: List your github and bitbucket projects on your Wordpress blog really, really easily. Why? Because you're a baller.
-Version: 1.0.6
+Plugin Name: GitHub & BitBucket Project Lister with no-cache option
+Plugin URI: https://github.com/era/wordpress-github
+Description: List your github and bitbucket projects on your Wordpress blog really, really easily with option to avoid cache data.
+Version: 1.0.6.1
 Author: Kenny Katzgrau
 Author URI: http://codefury.net
 */
