@@ -54,6 +54,7 @@ class WPGH_Project
      * @var int
      */
      public $updated;
+     
 
 
     /**
@@ -66,7 +67,15 @@ class WPGH_Project
     public static function fetch($info, $sort_type = FALSE, $sort_asc = TRUE)
     {
         $projects = array();
-        $sources  = explode(',', $info);
+        $sources  = explode(',', $info);       
+        
+        $no_cache = array_search('no-cache',$sources);
+                
+        #Since php5.2 array_search returns null if it can't find the value
+        if($no_cache != NULL){
+            unset($sources[$no_cache]);
+            return WPGH_Project::fetch_no_cache($sources,$sort_type,$sort_asc);
+        }
 
         # Go through the list
         foreach($sources as $source)
@@ -115,6 +124,53 @@ class WPGH_Project
             }
 
             $projects = array_merge($projects, $result);
+        }
+
+        # Sort the list? Everyone wants watchers first!
+        $sort_type = strtolower($sort_type);
+        if($sort_type && is_callable(array(__CLASS__, "sortby$sort_type")))
+        {
+            $sorter = "sortby$sort_type";
+            $projects = self::$sorter($projects, $sort_asc);
+        }
+
+        return $projects;
+    }
+    
+    public static function fetch_no_cache($sources,$sort_type,$sort_asc){
+        
+        $projects = array();
+         # Go through the list
+        foreach($sources as $source)
+        {
+            
+            # Parse out the info
+            $source = explode(':', $source);
+            if(count($source) != 2) continue;
+            list($location, $username) = $source;
+
+            # Prep it to be flexible
+            $location = strtolower(trim($location));
+            $username = strtolower(trim($username));
+            $method = "fetch_$location";
+
+            #It might actually be an option
+            if($location == 'sortby')
+                $sort_type = $username;
+
+            if($location == 'sortdir')
+                $sort_asc = ($username == 'asc');
+
+            # Check that a call exists for this source type
+            if(!is_callable(array(__CLASS__, $method)))
+                continue;
+
+            # Make the call
+            $result = self::$method($username);
+            
+            if($result !== FALSE)
+                $projects = array_merge($projects, $result);
+
         }
 
         # Sort the list? Everyone wants watchers first!
