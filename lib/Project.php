@@ -138,16 +138,16 @@ class WPGH_Project
     {
         $projects = array();
 
-        $url  = "http://github.com/api/v1/json/$username";
+        $url  = "https://api.github.com/users/$username/repos";
         $json = WPGH_Net::get($url);
 
-        if(!is_object($json = json_decode($json)))
+        if(!is_array($json = json_decode($json)))
             return FALSE;
 
-        foreach($json->user->repositories as $repo)
+        foreach($json as $repo)
         {
             $proj = new WPGH_Project;
-            $proj->url = $repo->url;
+            $proj->url = $repo->html_url;
             $proj->name = $repo->name;
             $proj->description = $repo->description;
             $proj->watchers = $repo->watchers;
