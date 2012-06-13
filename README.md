@@ -87,13 +87,14 @@ Caching is done via another project of mine, [WP-Easy-Cache](https://github.com/
 
 Special thanks to contributors, including:
 
- * [mhutchin](http://github.com/mhutchin)
- * [benallfree](http://github.com/benallfree)
- * [jmccrohan](http://github.com/jmccrohan)
+* [mhutchin](http://github.com/mhutchin)
+* [benallfree](http://github.com/benallfree)
+* [jmccrohan](http://github.com/jmccrohan)
+* [marcwickenden](http://offensivecoder.com/)
 
 ## License (MIT)
 
-Copyright (C) 2011 by Kenny Katzgrau <katzgrau@gmail.com>
+Copyright (C) 2012 by Kenny Katzgrau <katzgrau@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
