@@ -101,7 +101,7 @@
                 List of projects to display (Optional)
             </th>
             <td>
-                <input name="wpgh_included_projects" type="text" value="<?php echo implode(', ', $wpgh_included_projects); ?>" />
+                <input name="wpgh_included_projects" type="text" value="<?php echo implode(',', $wpgh_included_projects); ?>" />
             </td>
         </tr>
         <tr>
