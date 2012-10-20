@@ -19,7 +19,7 @@ class WPGH_Utility
      */
     public static function setOption($name, $value)
     {
-        if($value != '')
+        if(($value != '') || ($name == 'wpgh_included_projects'))
         {
             if (get_option($name) !== FALSE)
             {
