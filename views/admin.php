@@ -98,6 +98,14 @@
     <table id="wpgh-settings">
         <tr>
             <th scope="row">
+                List of projects to display (Optional)
+            </th>
+            <td>
+                <input name="wpgh_included_projects" type="text" value="<?php echo implode(', ', $wpgh_included_projects); ?>" />
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">
                 Pre-List Markup (HTML)
             </th>
             <td>
