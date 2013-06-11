@@ -47,21 +47,24 @@ class WPGH_Core
      */
     static function replaceCallback($matches)
     {
-        $projects = WPGH_Project::fetch($matches[1]);
-
-        $output   = self::getOpeningListTemplate();
+        $projects           = WPGH_Project::fetch($matches[1]);
+        $allowedProjects    = self::getIncludedProjectsArray(); 
+        $output             = self::getOpeningListTemplate();
 
         foreach($projects as $project)
         {
-            $template = self::getProjectTemplate();
-            $template = str_replace('{{PROJECT_URL}}', $project->url, $template);
-            $template = str_replace('{{PROJECT_NAME}}', htmlentities($project->name), $template);
-            $template = str_replace('{{PROJECT_WATCHER_COUNT}}', $project->watchers, $template);
-            $template = str_replace('{{PROJECT_DESCRIPTION}}', htmlentities($project->description), $template);
-            $template = str_replace('{{PROJECT_SOURCE}}', $project->source, $template);
-            $template = str_replace('{{PROJECT_WATCHER_NOUN}}', $project->watcher_noun, $template);
+            if(in_array(strtolower($project->name), $allowedProjects) || empty($allowedProjects))
+            {
+                $template = self::getProjectTemplate();
+                $template = str_replace('{{PROJECT_URL}}', $project->url, $template);
+                $template = str_replace('{{PROJECT_NAME}}', htmlentities($project->name), $template);
+                $template = str_replace('{{PROJECT_WATCHER_COUNT}}', $project->watchers, $template);
+                $template = str_replace('{{PROJECT_DESCRIPTION}}', htmlentities($project->description), $template);
+                $template = str_replace('{{PROJECT_SOURCE}}', $project->source, $template);
+                $template = str_replace('{{PROJECT_WATCHER_NOUN}}', $project->watcher_noun, $template);
+                $output .= $template . "\n";
+            }
 
-            $output .= $template . "\n";
         }
 
         return $output . self::getClosingListTemplate();
@@ -107,6 +110,40 @@ TEMP;
     }
 
     /**
+     * Get the names of the projects we want to display
+     * @return mixed (string|array)    Empty string if the are no project names set. Array if there are projects set.
+     */
+    static function getIncludedProjectsArray()
+    {
+        $projects   = array();
+        $option     = strtolower(WPGH_Utility::getOption('wpgh_included_projects'));
+        
+        if (!empty($option))
+        {
+            $projects   = explode(',', $option);
+
+            return array_map('trim', $projects);
+        }
+
+        return $option;
+    }
+
+    /**
+     * Makes sure the list of projects to include is formatted properly.
+     * The proper format is all lower case and no whitespace before or 
+     * after a comma.
+     * @return string
+     */
+    static function cleanIncludedProjectsString($str)
+    {
+        $str        = strtolower($str);
+        $projects   = array_map('trim', explode(',', $str));
+        $projects   = array_filter($projects);
+
+        return implode(',', $projects);
+    }
+
+    /**
      * Register the admin settings page
      */
     static function registerAdmin()
@@ -124,18 +161,19 @@ TEMP;
 
         if($submit)
         {
-            WPGH_Utility::setOption('wpgh_opener',   WPGH_Utility::arrayGet($_POST, 'wpgh_opener'));
-            WPGH_Utility::setOption('wpgh_template', WPGH_Utility::arrayGet($_POST, 'wpgh_template'));
-            WPGH_Utility::setOption('wpgh_closer',   WPGH_Utility::arrayGet($_POST, 'wpgh_closer'));
-
+            WPGH_Utility::setOption('wpgh_opener',              WPGH_Utility::arrayGet($_POST, 'wpgh_opener'));
+            WPGH_Utility::setOption('wpgh_template',            WPGH_Utility::arrayGet($_POST, 'wpgh_template'));
+            WPGH_Utility::setOption('wpgh_closer',              WPGH_Utility::arrayGet($_POST, 'wpgh_closer'));
+            WPGH_Utility::setOption('wpgh_included_projects',   self::cleanIncludedProjectsString(WPGH_Utility::arrayGet($_POST, 'wpgh_included_projects')));
             $updated = TRUE;
         }
 
         $data = array (
-            'wpgh_opener'   => self::getOpeningListTemplate(),
-            'wpgh_closer'   => self::getClosingListTemplate(),
-            'wpgh_template' => self::getProjectTemplate(),
-            'wpgh_updated'  => $updated
+            'wpgh_opener'               => self::getOpeningListTemplate(),
+            'wpgh_closer'               => self::getClosingListTemplate(),
+            'wpgh_template'             => self::getProjectTemplate(),
+            'wpgh_included_projects'    => self::getIncludedProjectsArray(),
+            'wpgh_updated'              => $updated,
         );
 
         WPGH_View::load('admin', $data);
