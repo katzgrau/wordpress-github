@@ -55,9 +55,9 @@ class WPGH_Core
         {
             $template = self::getProjectTemplate();
             $template = str_replace('{{PROJECT_URL}}', $project->url, $template);
-            $template = str_replace('{{PROJECT_NAME}}', htmlentities($project->name), $template);
+            $template = str_replace('{{PROJECT_NAME}}', htmlentities($project->name, ENT_QUOTES, 'UTF-8'), $template);
             $template = str_replace('{{PROJECT_WATCHER_COUNT}}', $project->watchers, $template);
-            $template = str_replace('{{PROJECT_DESCRIPTION}}', htmlentities($project->description), $template);
+            $template = str_replace('{{PROJECT_DESCRIPTION}}', htmlentities($project->description, ENT_QUOTES, 'UTF-8'), $template);
             $template = str_replace('{{PROJECT_SOURCE}}', $project->source, $template);
             $template = str_replace('{{PROJECT_WATCHER_NOUN}}', $project->watcher_noun, $template);
 
